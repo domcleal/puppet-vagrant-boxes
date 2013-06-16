@@ -30,11 +30,11 @@ Note: Change the base command between vbox or fusion depending on your target pr
 
 Get a list of available definitions:
 
-    $ veewee [vbox|fusion] templates
+    $ veewee [vbox|fusion|kvm] templates
 
 Pick one, and define it using:
 
-    $ veewee [vbox|fusion] vbox define '<box_name>' '<template_name>'
+    $ veewee [vbox|fusion|kvm] vbox define '<box_name>' '<template_name>'
 
 Make sure <box_name> follows the convention:
 
@@ -45,9 +45,10 @@ Make sure <box_name> follows the convention:
     * for ubuntu: svr, dtop (used to be server, desktop)
 * version: 8, 2008, 1104
 * arch: x64, i386
-* virtual-type: type & version.
+* virtual-type: type & version. (optional)
     * vbXXXX: virtualbox + version (used to be vboxXXX)
     * vfXXX: vmware fusion + version (used to be fusionXXX)
+    * omit for KVM or vanilla images
 * variant (optional):
     * nocm: designates no configuration management tools were loaded
 
@@ -58,6 +59,7 @@ Examples:
     windows-2008r2-x64-vb4210
     debian-607-x64-vb4210-nocm
     centos-64-x64-vf503
+    centos-64-x64-nocm
 
 ### Naming caveats
 
@@ -80,21 +82,21 @@ Finally, follow the next steps for building a box.
 
 Pick a box to build:
 
-    $ veewee [vbox|fusion] list
+    $ veewee [vbox|fusion|kvm] list
 
 To build it:
 
-    $ veewee [vbox|fusion] build <box-name>
+    $ veewee [vbox|fusion|kvm] build <box-name>
 
 At this point it will download necessary ISO's and start building a box.
 
 Now validate the box:
 
-    $ veewee [vbox|fusion] validate <box-name>
+    $ veewee [vbox|fusion|kvm] validate <box-name>
 
 And export the vm to a .box file:
 
-    $ veewee [vbox|fusion] export 'centos-58-x64'
+    $ veewee [vbox|fusion|kvm] export 'centos-58-x64'
 
 ## Publishing to S3
 
